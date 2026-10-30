@@ -1,0 +1,9 @@
+{
+  "name": "hadiahku-film-prop",
+  "version": "1.2.0",
+  "private": true,
+  "description": "Website simulasi fiktif untuk properti produksi film dan edukasi keamanan digital.",
+  "scripts": { "start": "node server.js" },
+  "engines": { "node": ">=18" },
+  "dependencies": { "express": "^4.21.2" }
+}

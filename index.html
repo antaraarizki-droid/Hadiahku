@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HadiahKu — Program Hadiah</title>
+<style>
+:root{--blue:#174f9c;--deep:#10366d;--gold:#f4c96b;--ink:#1c2b40;--muted:#68778b;--line:#e5eaf1}
+*{box-sizing:border-box}body{margin:0;background:#f5f7fb;color:var(--ink);font-family:Arial,sans-serif}
+header{background:#fff;border-bottom:1px solid var(--line)}.nav{max-width:1080px;margin:auto;padding:16px 22px;display:flex;align-items:center;justify-content:space-between}
+.brand{font-size:21px;font-weight:900;color:var(--deep)}.brand span{color:#e5a92e}.navtag{font-size:12px;color:#64748b}
+.wrap{max-width:1080px;margin:30px auto;padding:0 20px}.hero{background:linear-gradient(115deg,#12376f,#2363b1);color:white;border-radius:18px;padding:38px;display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:20px;box-shadow:0 14px 32px #12376f20}
+.eyebrow{color:#ffdc8c;font-size:12px;font-weight:800;letter-spacing:1.6px}.hero h1{font-size:clamp(30px,5vw,47px);line-height:1.08;margin:12px 0}.hero p{color:#e4edfa;line-height:1.65;max-width:570px}.hero-art{text-align:center;font-size:116px}
+.pill{display:inline-block;background:#fff;color:#173c70;padding:11px 16px;border-radius:8px;font-weight:800;margin-top:8px}
+.content{max-width:680px;margin:24px auto;background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px;box-shadow:0 8px 25px #1d35570a}
+.progress{display:flex;gap:8px;margin-bottom:22px}.progress i{height:4px;flex:1;background:#e5eaf1;border-radius:9px}.progress i.on{background:#eab84d}
+h2{margin:0 0 8px;color:#173b70;font-size:23px}.desc{color:var(--muted);font-size:14px;line-height:1.55;margin:0 0 18px}
+label{display:block;font-size:13px;font-weight:700;margin:15px 0 7px}input,select{width:100%;padding:13px;border:1px solid #cbd5e1;border-radius:9px;font-size:15px;background:#fff;color:#1c2b40}
+input:focus,select:focus{outline:2px solid #3977c433;border-color:#3977c4}
+button{width:100%;padding:14px 16px;border:0;border-radius:9px;background:#1d5aa5;color:#fff;font-weight:800;font-size:15px;cursor:pointer;margin-top:17px}.secondary{background:#edf2f8;color:#23466f}
+.hidden{display:none!important}.small-note{font-size:11px;color:#78869a;line-height:1.5;margin-top:15px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}.notice{margin:14px 0 4px;background:#f7f9fc;border:1px solid #e5eaf1;border-radius:8px;padding:10px 12px;font-size:11px;color:#69788b;line-height:1.5}
+.phone{max-width:350px;margin:18px auto 8px;border:7px solid #202938;border-radius:28px;overflow:hidden;background:#eef2f7;box-shadow:0 12px 28px #10182828}
+.status{background:#202938;color:#fff;padding:8px 13px;font-size:11px;display:flex;justify-content:space-between}.sms-head{background:#fff;padding:14px;display:flex;align-items:center;gap:11px;border-bottom:1px solid #e7eaf0}
+.avatar{height:38px;width:38px;border-radius:50%;background:#e3edfc;color:#1e5798;display:grid;place-items:center;font-weight:800}.sms-body{padding:15px;min-height:135px}.sms-time{text-align:center;font-size:10px;color:#8491a3;margin-bottom:12px}
+.bubble{background:#fff;border-radius:5px 16px 16px 16px;padding:13px;font-size:14px;line-height:1.5;box-shadow:0 1px 2px #0001}
+
+.modal-backdrop{position:fixed;inset:0;background:rgba(12,25,45,.58);z-index:10000;display:flex;align-items:center;justify-content:center;padding:20px}
+.modal-card{width:min(100%,360px);background:#fff;border-radius:18px;padding:24px;text-align:center;box-shadow:0 22px 60px #0004}
+.modal-icon{width:52px;height:52px;border-radius:50%;background:#eaf1fc;color:#1d5aa5;display:grid;place-items:center;margin:0 auto 12px;font-size:25px}
+.otp-code{font-size:30px;font-weight:900;letter-spacing:8px;color:#173b70;background:#f2f6fc;border:1px dashed #9bb5d8;border-radius:12px;padding:15px;margin:16px 0}
+.modal-note{font-size:11px;color:#68778b;line-height:1.5}
+
+.done{background:#eff8f1;border:1px solid #cde9d3;color:#235b34;border-radius:10px;padding:16px;line-height:1.55}footer{text-align:center;padding:22px;color:#8290a2;font-size:12px}
+@media(max-width:700px){.hero{grid-template-columns:1fr;padding:27px}.hero-art{font-size:75px}.content{padding:21px}.wrap{margin-top:18px}.grid{grid-template-columns:1fr}}
+</style></head>
+<body>
+<header><div class="nav"><div class="brand">Hadiah<span>Ku</span></div><div class="navtag">Program Hadiah Spesial</div></div></header>
+<main class="wrap">
+<section class="hero"><div><div class="eyebrow">PROGRAM APRESIASI PELANGGAN</div><h1>Kejutan spesial menantimu</h1><p>Rayakan momen istimewa bersama HadiahKu. Ikuti beberapa langkah singkat untuk melihat hadiah kejutan yang tersedia.</p><div class="pill">🎁 Hadiah pilihan menanti</div></div><div class="hero-art" aria-hidden="true">🎁</div></section>
+<section class="content">
+<div class="progress"><i id="p1" class="on"></i><i id="p2"></i><i id="p3"></i><i id="p4"></i></div>
+<section id="s1">
+<h2>Mulai klaim hadiah</h2><p class="desc">Masukkan nama panggilan untuk melanjutkan.</p>
+<label for="alias">Nama panggilan karakter</label><input id="alias" maxlength="40" placeholder="Contoh: Andi">
+<button id="start">Lanjutkan</button>
+<div class="notice">Properti produksi film. Gunakan identitas fiktif saja. Jangan masukkan data pribadi asli.</div>
+</section>
+<section id="s2" class="hidden">
+<h2>Lengkapi profil penerima</h2><p class="desc">Formulir ini menggunakan data karakter rekaan untuk adegan film.</p>
+<div class="notice">Isi hanya data fiktif. Kolom ini tidak meminta atau menyimpan nomor telepon, email, alamat rumah, rekening, kata sandi, maupun identitas asli.</div>
+<div class="grid">
+<div><label for="fictionName">Nama lengkap karakter</label><input id="fictionName" placeholder="Nama rekaan"></div>
+<div><label for="fictionAge">Usia karakter</label><input id="fictionAge" type="number" min="1" max="110" placeholder="Contoh: 22"></div>
+<div><label for="fictionCity">Kota fiktif</label><input id="fictionCity" placeholder="Contoh: Kota Harmoni"></div>
+<div><label for="fictionJob">Pekerjaan karakter</label><select id="fictionJob"><option value="">Pilih pekerjaan</option><option>Pelajar</option><option>Mahasiswa</option><option>Karyawan</option><option>Wiraswasta</option><option>Lainnya</option></select></div>
+</div>
+<button id="profileNext">Lanjutkan</button>
+</section>
+<section id="s3" class="hidden">
+<h2>Konfirmasi hadiah</h2><p class="desc">Lihat pesan konfirmasi pada perangkat.</p>
+<button id="showSms">Minta kode OTP</button>
+<div id="otpModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="otpModalTitle">
+ <div class="modal-card">
+  <div class="modal-icon">✉</div>
+  <h2 id="otpModalTitle">Kode OTP</h2>
+  <p class="desc">Kode untuk adegan film ini:</p>
+  <div class="otp-code">123456</div>
+  <p class="modal-note">Kode fiktif untuk properti film. Tidak dikirim melalui SMS dan tidak berlaku untuk akun atau layanan apa pun.</p>
+  <button id="closeOtpModal" type="button">Mengerti</button>
+ </div>
+</div>
+<label for="demoCode">Kode OTP demo demo</label><input id="demoCode" inputmode="numeric" maxlength="6" placeholder="Masukkan 6 digit kode demo">
+<button id="finish">Konfirmasi</button><div class="notice">Kode ini fiktif dan tidak digunakan untuk mengakses akun atau layanan apa pun.</div>
+</section>
+<section id="s4" class="hidden"><div class="done"><h2>Terima kasih</h2>Ini adalah akhir adegan. Website ini merupakan properti film untuk edukasi keamanan digital. Data formulir hanya digunakan di tampilan halaman dan tidak dikirim atau disimpan.</div><button class="secondary" onclick="location.reload()">Ulangi</button></section>
+</section><footer>HadiahKu · Properti produksi film</footer></main>
+<script>
+const el=id=>document.getElementById(id);
+function step(n){[1,2,3,4].forEach(i=>el("s"+i).classList.toggle("hidden",i!==n));[1,2,3,4].forEach(i=>el("p"+i).classList.toggle("on",i<=n));}
+el("start").addEventListener("click",()=>{if(!el("alias").value.trim()){alert("Masukkan nama panggilan karakter.");return;}step(2);});
+el("profileNext").addEventListener("click",()=>{if(!el("fictionName").value.trim()||!el("fictionAge").value||!el("fictionCity").value.trim()||!el("fictionJob").value){alert("Lengkapi data karakter fiktif untuk melanjutkan.");return;}step(3);});
+el("showSms").addEventListener("click",()=>el("otpModal").classList.remove("hidden"));
+el("closeOtpModal").addEventListener("click",()=>el("otpModal").classList.add("hidden"));
+el("finish").addEventListener("click",()=>{if(el("demoCode").value.trim()!=="123456"){alert("Untuk adegan ini, gunakan kode demo 123456.");return;}step(4);});
+</script></body></html>
