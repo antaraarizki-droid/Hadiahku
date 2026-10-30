@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HadiahKu — Simulasi Film</title>
+<style>
+:root{--navy:#142b52;--blue:#2459a8;--gold:#f3c86a;--ink:#17243a;--muted:#64748b}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;color:var(--ink);background:#f2f5fa}
+.top{background:var(--navy);color:white;padding:14px 20px}.topin{max-width:1040px;margin:auto;display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:900;letter-spacing:1px;font-size:20px}.demo{font-size:11px;border:1px solid #ffffff80;border-radius:30px;padding:6px 10px}
+main{max-width:1040px;margin:28px auto;padding:0 18px}.hero{background:linear-gradient(120deg,#10284e,#2860a9);border-radius:20px;color:white;padding:38px;display:grid;grid-template-columns:1.3fr .7fr;gap:20px;align-items:center;box-shadow:0 16px 35px #10284e25}
+.kicker{color:var(--gold);font-weight:bold;font-size:12px;letter-spacing:1.5px}.hero h1{font-size:clamp(30px,5vw,48px);line-height:1.08;margin:12px 0}.hero p{color:#e4ebf7;line-height:1.6;max-width:560px}
+.gift{font-size:110px;text-align:center;filter:drop-shadow(0 12px 12px #0004)}.prize{background:#fff;color:var(--navy);display:inline-block;padding:10px 16px;border-radius:10px;font-weight:bold;margin-top:8px}
+.panel{background:white;border-radius:18px;padding:26px;margin:22px auto;max-width:650px;box-shadow:0 8px 26px #17243a0d}.steps{display:flex;gap:8px;margin-bottom:20px}.step{height:5px;flex:1;background:#e2e8f0;border-radius:8px}.step.active{background:var(--gold)}
+h2{margin:8px 0 10px;color:var(--navy)}.sub{color:var(--muted);font-size:14px;line-height:1.5}
+.notice{background:#fff7df;border:1px solid #f5df9d;padding:12px;border-radius:10px;color:#745514;font-size:12px;line-height:1.5;margin:15px 0}
+label{display:block;font-weight:bold;font-size:13px;margin:16px 0 7px}input{width:100%;padding:14px;border:1px solid #cbd5e1;border-radius:9px;font-size:16px}
+button{border:0;background:var(--blue);color:white;padding:14px 18px;border-radius:9px;font-weight:bold;cursor:pointer;width:100%;margin-top:16px}
+button:hover{filter:brightness(1.08)}.secondary{background:#e8eef8;color:var(--navy)}
+.hidden{display:none!important}.muted{color:var(--muted);font-size:12px}
+.phone{max-width:340px;margin:18px auto 8px;border:7px solid #202938;border-radius:28px;background:#edf1f7;overflow:hidden;box-shadow:0 12px 28px #10182830}
+.status{background:#202938;color:white;padding:8px 14px;font-size:11px;display:flex;justify-content:space-between}
+.smshead{background:white;padding:14px;display:flex;gap:10px;align-items:center;border-bottom:1px solid #e5e7eb}
+.avatar{width:38px;height:38px;border-radius:50%;background:#dbeafe;color:#1d4ed8;display:grid;place-items:center;font-weight:bold}
+.smsbody{padding:15px;min-height:140px}.tag{display:inline-block;background:#fff0c2;color:#805b00;font-size:10px;font-weight:bold;padding:4px 7px;border-radius:20px;margin-bottom:8px}
+.bubble{background:white;border-radius:5px 16px 16px 16px;padding:13px;line-height:1.5;font-size:14px;box-shadow:0 1px 2px #0001}
+.success{background:#eaf8ef;color:#17633a;padding:14px;border-radius:10px;line-height:1.5}
+.footer{text-align:center;color:#718096;font-size:12px;padding:18px}
+@media(max-width:700px){.hero{grid-template-columns:1fr;padding:26px}.gift{font-size:70px}.panel{padding:20px}}
+</style></head>
+<body>
+<header class="top"><div class="topin"><div class="logo">HADIAHKU</div><span class="demo">PROPERTI FILM • SIMULASI</span></div></header>
+<main>
+<section class="hero">
+ <div><div class="kicker">PROGRAM HADIAH SPESIAL</div><h1>Kejutan spesial menantimu!</h1>
+ <p>Selamat datang di halaman demonstrasi klaim hadiah HadiahKu. Ikuti tahapan simulasi hingga selesai.</p>
+ <div class="prize">🎁 HADIAH KEJUTAN</div></div>
+ <div class="gift" aria-hidden="true">🎁</div>
+</section>
+<section class="panel">
+ <div class="steps"><div id="bar1" class="step active"></div><div id="bar2" class="step"></div><div id="bar3" class="step"></div></div>
+ <section id="step1">
+  <h2>Mulai klaim hadiah</h2><p class="sub">Masukkan nama panggilan karakter untuk memulai adegan.</p>
+  <div class="notice"><b>Catatan produksi:</b> Ini website simulasi untuk short movie. Gunakan nama samaran. Jangan masukkan nomor telepon, email, rekening, kata sandi, atau data asli.</div>
+  <label>Nama panggilan / nama karakter</label><input id="alias" maxlength="40" placeholder="Contoh: Andi (pemeran)">
+  <button id="start">Mulai klaim hadiah</button>
+ </section>
+ <section id="step2" class="hidden">
+  <h2>Konfirmasi simulasi</h2><p class="sub">Untuk adegan film, tampilkan pesan verifikasi fiktif pada layar.</p>
+  <div class="notice">Notifikasi berikut adalah properti visual. Tidak ada pesan SMS sungguhan yang dikirim.</div>
+  <button id="request">Tampilkan notifikasi SMS demo</button>
+  <div id="phone" class="phone hidden">
+   <div class="status"><span>9:41 • SIMULASI</span><span>●●● Wi-Fi 100%</span></div>
+   <div class="smshead"><div class="avatar">H</div><div><b>HadiahKu Demo</b><div class="muted">Pesan simulasi • sekarang</div></div></div>
+   <div class="smsbody"><span class="tag">PESAN FIKTIF — PROPERTI FILM</span><div class="bubble">Kode verifikasi demo HadiahKu: <b>123456</b>. Kode ini hanya untuk adegan film dan tidak berlaku untuk layanan apa pun.</div></div>
+  </div>
+  <label>Masukkan kode demo</label><input id="otp" inputmode="numeric" maxlength="6" placeholder="6 digit kode demo">
+  <button id="verify">Lanjutkan simulasi</button>
+ </section>
+ <section id="step3" class="hidden">
+  <div class="success"><h2>Simulasi selesai</h2>Website ini merupakan properti film untuk memperlihatkan pola phishing. Tidak ada data sensitif yang dikumpulkan dan tidak ada OTP asli yang dikirim.</div>
+  <button class="secondary" onclick="location.reload()">Ulangi adegan</button>
+ </section>
+ <p class="muted">Tidak terhubung dengan bank, operator seluler, atau layanan autentikasi.</p>
+</section>
+<div class="footer"><a href="/admin.html">Dashboard kru produksi</a> · HadiahKu Film Simulation</div>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+function showStep(n){[1,2,3].forEach(i=>$("step"+i).classList.toggle("hidden",i!==n));[1,2,3].forEach(i=>$("bar"+i).classList.toggle("active",i<=n));}
+$("start").onclick=async()=>{
+ const alias=$("alias").value.trim();if(!alias){alert("Isi nama panggilan karakter.");return;}
+ try{
+  const r=await fetch("/api/register",{method:"POST",headers:{"Content-Type":"application/json"},credentials:"same-origin",body:JSON.stringify({alias})});
+  const d=await r.json();if(!r.ok)throw new Error(d.error||"Tidak dapat memulai.");
+  showStep(2);
+ }catch(e){alert(e.message);}
+};
+$("request").onclick=async()=>{
+ try{
+  const r=await fetch("/api/request-demo-otp",{method:"POST",credentials:"same-origin"});
+  const d=await r.json();if(!r.ok)throw new Error(d.error||"Tidak dapat menampilkan kode demo.");
+  $("phone").classList.remove("hidden");
+ }catch(e){alert(e.message+" Muat ulang dan mulai lagi dari awal.");}
+};
+$("verify").onclick=async()=>{
+ try{
+  const r=await fetch("/api/verify-demo-otp",{method:"POST",headers:{"Content-Type":"application/json"},credentials:"same-origin",body:JSON.stringify({code:$("otp").value})});
+  const d=await r.json();if(!r.ok)throw new Error(d.error||"Kode demo belum benar.");
+  showStep(3);
+ }catch(e){alert(e.message);}
+};
+</script>
+</body></html>
