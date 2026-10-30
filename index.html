@@ -1,0 +1,54 @@
+
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HadiahKu | Simulasi Film</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f3f6fb;color:#172033}
+main{max-width:520px;margin:6vh auto;padding:24px}.card{background:white;border-radius:18px;padding:28px;box-shadow:0 12px 35px #1b2b4a18}
+.brand{color:#2463eb;font-weight:800;letter-spacing:.4px}.notice{font-size:13px;color:#58657a;background:#eef4ff;padding:12px;border-radius:10px;line-height:1.5}
+label{display:block;margin:16px 0 7px;font-weight:700}input{width:100%;padding:13px;border:1px solid #cbd5e1;border-radius:9px;font-size:16px}
+button{width:100%;border:0;border-radius:9px;padding:14px;background:#2463eb;color:white;font-weight:700;font-size:15px;margin-top:16px;cursor:pointer}
+.hidden{display:none}.muted{color:#667085;font-size:13px}.result{margin-top:14px;padding:12px;border-radius:9px;background:#eaf8ef;color:#17633a}
+a{color:#2463eb}
+</style></head>
+<body><main><div class="card">
+<div class="brand">HADIAHKU • SIMULASI</div>
+<h1>Klaim hadiah spesial</h1>
+<p>Ikuti alur demonstrasi untuk kebutuhan produksi film.</p>
+<div class="notice"><b>Properti film / simulasi edukasi.</b> Gunakan nama panggilan atau nama fiktif saja. Jangan masukkan nomor telepon, email, rekening, kata sandi, atau data pribadi asli.</div>
+<section id="step1">
+<label>Nama panggilan / nama karakter</label><input id="alias" maxlength="40" placeholder="Contoh: Andi (pemeran)">
+<button id="start">Lanjutkan simulasi</button>
+</section>
+<section id="step2" class="hidden">
+<h2>Verifikasi simulasi</h2><p>Klik tombol di bawah untuk menampilkan OTP demo.</p>
+<button id="request">Tampilkan kode OTP demo</button>
+<div id="demo" class="result hidden"></div>
+<label>Masukkan kode demo</label><input id="otp" inputmode="numeric" maxlength="6" placeholder="6 digit kode demo">
+<button id="verify">Verifikasi demo</button>
+</section>
+<section id="done" class="hidden"><h2>Simulasi selesai</h2><p>Ini adalah demonstrasi phishing. OTP demo tidak dikirim melalui SMS dan tidak ada data sensitif yang dikumpulkan.</p></section>
+<p class="muted">Tidak terhubung ke bank, operator seluler, atau layanan autentikasi.</p>
+</div><p class="muted" style="text-align:center"><a href="/admin.html">Dashboard kru produksi</a></p></main>
+<script>
+const $=id=>document.getElementById(id);
+$("start").onclick=async()=>{
+ const alias=$("alias").value.trim(); if(!alias){alert("Isi nama panggilan.");return;}
+ const r=await fetch("/api/register",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({alias})});
+ const d=await r.json(); if(!r.ok){alert(d.error);return;}
+ $("step1").classList.add("hidden");$("step2").classList.remove("hidden");
+};
+$("request").onclick=async()=>{
+ const r=await fetch("/api/request-demo-otp",{method:"POST"});const d=await r.json();
+ if(!r.ok){alert(d.error);return;}
+ $("demo").textContent="OTP DEMO UNTUK SYUTING: "+d.demoCode+" — kode ini hanya untuk simulasi, tidak dikirim lewat SMS.";
+ $("demo").classList.remove("hidden");
+};
+$("verify").onclick=async()=>{
+ const r=await fetch("/api/verify-demo-otp",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({code:$("otp").value})});
+ const d=await r.json();if(!r.ok){alert(d.error);return;}
+ $("step2").classList.add("hidden");$("done").classList.remove("hidden");
+};
+</script></body></html>

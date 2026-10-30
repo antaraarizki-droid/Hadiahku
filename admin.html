@@ -1,0 +1,20 @@
+
+<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dashboard Kru Produksi</title><style>
+body{font-family:Arial,sans-serif;background:#f3f6fb;margin:0;padding:24px;color:#172033}
+main{max-width:900px;margin:auto}.card{background:white;padding:24px;border-radius:16px;box-shadow:0 8px 28px #1b2b4a12}
+input,button{padding:12px;border-radius:8px;border:1px solid #cbd5e1;font-size:15px}button{background:#2463eb;color:white;border:0;cursor:pointer}
+table{width:100%;border-collapse:collapse;margin-top:20px}th,td{text-align:left;padding:12px;border-bottom:1px solid #e5e7eb}
+small{color:#667085}.hidden{display:none}
+</style></head><body><main><div class="card"><h1>Dashboard kru produksi</h1>
+<p><small>Hanya menampilkan pseudonim dan progres simulasi; tidak mengumpulkan nomor HP, email, rekening, atau IP.</small></p>
+<div id="login"><input id="pw" type="password" placeholder="Password admin"><button id="enter">Masuk</button></div>
+<div id="panel" class="hidden"><button id="refresh">Muat ulang</button> <button id="logout">Keluar</button>
+<table><thead><tr><th>Nama karakter</th><th>Waktu</th><th>Progres</th></tr></thead><tbody id="rows"></tbody></table></div>
+<p id="msg"></p></div></main><script>
+const $=id=>document.getElementById(id);
+$("enter").onclick=async()=>{let r=await fetch("/api/admin/login",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({password:$("pw").value})});let d=await r.json();if(!r.ok){$("msg").textContent=d.error;return;}$("login").classList.add("hidden");$("panel").classList.remove("hidden");load();};
+async function load(){let r=await fetch("/api/admin/participants");if(!r.ok){$("msg").textContent="Sesi admin berakhir. Login kembali.";return;}let d=await r.json();$("rows").innerHTML=d.participants.map(p=>`<tr><td>${esc(p.alias)}</td><td>${new Date(p.createdAt).toLocaleString("id-ID")}</td><td>${esc(p.stage)}</td></tr>`).join("")||"<tr><td colspan='3'>Belum ada peserta.</td></tr>";}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+$("refresh").onclick=load;$("logout").onclick=async()=>{await fetch("/api/admin/logout",{method:"POST"});location.reload();};
+</script></body></html>
