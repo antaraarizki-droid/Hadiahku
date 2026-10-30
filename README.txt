@@ -1,1 +1,0 @@
-HadiahKu properti film. Deploy Node.js dengan npm install dan npm start. Atur ADMIN_PASSWORD, SESSION_SECRET, NODE_ENV=production. OTP demo hanya 123456 dan ditampilkan pada halaman, tidak dikirim lewat SMS. Data hanya nama samaran dan progres; penyimpanan sementara di memori.
